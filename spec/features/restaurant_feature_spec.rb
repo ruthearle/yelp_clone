@@ -13,14 +13,14 @@ describe 'restaurants' do
     before do
       Restaurant.create(name: 'KFC')
     end
-    it 'should display the restaurants' do
+    it 'the names should be displayed' do
       visit restaurants_path
       expect(page).to have_content 'KFC'
       expect(page).not_to have_content 'No restaurants yet'
     end
   end
 
-  describe 'creating a restaurant' do
+  context 'creating a restaurant' do
     it 'by a person completing a form' do
       visit restaurants_path
       click_link 'Add a restaurant'
@@ -29,6 +29,20 @@ describe 'restaurants' do
       expect(current_path).to eq restaurants_path
       expect(page).to have_content 'KFC'
       expect(page).not_to have_content 'No restaurants yet'
+    end
+  end
+
+  context 'editing a restaurant' do
+    before do
+      Restaurant.create(name: 'KFC')
+    end
+    it 'a person can edit a restaurant' do
+      visit restaurants_path
+      clink_link 'Edit KFC'
+      fill_in 'Name', with: 'Kenticky Fried Chicken'
+      click_button 'Update Restaurant'
+      expect(page).to have_content 'Kentucky Fried Chicken'
+      expect(current_path).to eq restaurants_path
     end
   end
 end
