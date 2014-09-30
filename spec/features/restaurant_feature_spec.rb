@@ -22,12 +22,11 @@ describe 'restaurants' do
 
   describe 'creating a restaurant' do
     it 'by a person completing a form' do
-      visit restaurant_path
+      visit restaurants_path
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
-      fill_in 'Description', with: 'Chicken and fries'
-      click_button 'Create restaurant'
-      expect(current_path).to eq restaurant_path
+      click_button 'Create Restaurant'
+      expect(current_path).to eq restaurants_path
       expect(page).to have_content 'KFC'
       expect(page).not_to have_content 'No restaurants yet'
     end
