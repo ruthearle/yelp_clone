@@ -46,15 +46,15 @@ describe 'restaurants' do
     end
   end
 
-  #context 'deleting a restaurant' do
-    #before do
-      #Restaurant.create(name: 'KFC')
-    #end
-    #it 'a person can delete a restaurant when they click a link' do
-      #visit restaurants_path
-      #click_link 'Delete KFC'
-      #expect(current_path).to eq restaurants_path
-      #expect(page).to_have 'Restaurant deleted successfully'
-    #end
-  #end
+  context 'deleting a restaurant' do
+    before do
+      Restaurant.create(name: 'KFC')
+    end
+    it 'a person can delete a restaurant when they click a link' do
+      visit restaurants_path
+      click_link 'Delete KFC'
+      expect(current_path).to eq restaurants_path
+      expect(page).to_have 'Restaurant deleted successfully'
+    end
+  end
 end
