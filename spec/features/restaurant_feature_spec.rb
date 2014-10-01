@@ -38,11 +38,23 @@ describe 'restaurants' do
     end
     it 'a person can edit a restaurant' do
       visit restaurants_path
-      clink_link 'Edit KFC'
-      fill_in 'Name', with: 'Kenticky Fried Chicken'
+      click_link 'Edit KFC'
+      fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
       expect(page).to have_content 'Kentucky Fried Chicken'
       expect(current_path).to eq restaurants_path
     end
   end
+
+  #context 'deleting a restaurant' do
+    #before do
+      #Restaurant.create(name: 'KFC')
+    #end
+    #it 'a person can delete a restaurant when they click a link' do
+      #visit restaurants_path
+      #click_link 'Delete KFC'
+      #expect(current_path).to eq restaurants_path
+      #expect(page).to_have 'Restaurant deleted successfully'
+    #end
+  #end
 end
