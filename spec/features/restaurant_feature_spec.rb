@@ -20,11 +20,12 @@ describe 'restaurants' do
     end
   end
 
-  context 'creating a restaurant' do
+  context 'a restaurant can be created' do
     it 'by a person completing a form' do
       visit restaurants_path
       click_link 'Add a restaurant'
       fill_in 'Name', with: 'KFC'
+      fill_in 'Description', with: 'Chicken shop'
       click_button 'Create Restaurant'
       expect(current_path).to eq restaurants_path
       expect(page).to have_content 'KFC'
@@ -57,4 +58,5 @@ describe 'restaurants' do
       expect(current_path).to eq '/restaurants'
     end
   end
+
 end
