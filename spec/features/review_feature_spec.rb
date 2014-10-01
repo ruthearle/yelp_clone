@@ -9,7 +9,7 @@ describe 'reviewing' do
     visit restaurants_path
     click_link 'Review KFC'
     fill_in 'Thoughts', with: 'Side-breast is the bomb'
-    click_button 'Leave review'
+    click_button 'Create Review'
     expect(current_path).to eq restaurants_path
     expect(page).to have_content 'Side-breast is the bomb'
   end
