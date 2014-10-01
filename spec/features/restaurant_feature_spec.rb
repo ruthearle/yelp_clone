@@ -59,4 +59,22 @@ describe 'restaurants' do
     end
   end
 
+  context 'showing the restaurant description' do
+    before do
+      Restaurant.create(name: 'KFC',
+                        description: 'The chicken shop')
+    end
+    it 'when a person clicks on a link' do
+      visit restaurants_path
+      click_link 'Show KFC'
+      expect(page).to have_content 'The chicken shop'
+    end
+
+    it 'after displaying a restaurant a person can go back to the main page' do
+      visit restaurants_path
+      click_link 'Show KFC'
+      click_link 'Go back to restaurants'
+      expect(current_path).to eq restaurants_path
+    end
+  end
 end
