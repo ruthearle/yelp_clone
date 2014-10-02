@@ -24,6 +24,6 @@ describe 'reviewing' do
     leaving_review('So so', 3)
     leaving_review('Really good', 5)
     expect(current_path).to eq restaurants_path
-    expect(page).to have_content 'Average rating: 4'
+    expect(page).to have_content 'Average rating: ★★★★☆'
   end
 end
