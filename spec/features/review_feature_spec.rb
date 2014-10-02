@@ -26,4 +26,10 @@ describe 'reviewing' do
     expect(current_path).to eq restaurants_path
     expect(page).to have_content 'Average rating: ★★★★☆'
   end
+
+  it 'shows the time stamp of the review' do
+    leaving_review('So so', 3)
+    expect(current_path).to eq restaurants_path
+    expect(page).to have_content 'posted 1 hour ago'
+  end
 end
