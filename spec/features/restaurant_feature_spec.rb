@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'restaurants' do
-  context 'have not been added' do
+describe 'restaurants homepage' do
+  context 'no restaurants have been added' do
     it 'a person is prompted to add a restaurant' do
       visit restaurants_path
       expect(page).to have_content 'No restaurants yet'
@@ -9,7 +9,7 @@ describe 'restaurants' do
     end
   end
 
-  context 'has already been added' do
+  context 'a restaurant has already been added' do
     before do
       Restaurant.create(name: 'KFC')
     end
@@ -19,8 +19,10 @@ describe 'restaurants' do
       expect(page).not_to have_content 'No restaurants yet'
     end
   end
+end
 
-  context 'a restaurant can be created' do
+describe 'creating a restaurant' do
+  context 'a valid restaurant' do
     it 'by a person completing a form' do
       visit restaurants_path
       click_link 'Add a restaurant'
@@ -33,7 +35,19 @@ describe 'restaurants' do
     end
   end
 
-  context 'editing a restaurant' do
+  context 'an invalid restaurant' do
+    it 'does not let you submit with a anme that is too short' do
+      visit restaurants_path
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'kf'
+      click_button 'Create Restaurant'
+      expect(page).not_to have_css 'h2', text: 'kf'
+      expect(page).to have_content 'errors'
+    end
+  end
+end
+
+describe 'editing a restaurant' do
     before do
       Restaurant.create(name: 'KFC')
     end
@@ -47,7 +61,7 @@ describe 'restaurants' do
     end
   end
 
-  context 'deleting a restaurant' do
+describe 'deleting a restaurant' do
     before do
       Restaurant.create(name: 'KFC')
     end
@@ -59,7 +73,7 @@ describe 'restaurants' do
     end
   end
 
-  context 'showing the restaurant description' do
+describe 'showing the restaurant description' do
     before do
       Restaurant.create(name: 'KFC',
                         description: 'The chicken shop')
@@ -77,4 +91,3 @@ describe 'restaurants' do
       expect(current_path).to eq restaurants_path
     end
   end
-end
