@@ -14,11 +14,18 @@ describe Restaurant, type: :model do
   end
 
   describe '#average rating'do
+    restaurant = Restaurant.new(name: "Mr Chow's")
     context 'no reviews'do
       it 'returns N/A' do
-        expect(restaurant.average.rating).to ea 'N/A'
+        expect(restaurant.average_rating).to eq 'N/A'
+      end
+    context '1 reviews' do
+      it 'returns that rating' do
+        restaurant = Restaurant.create(name: "Mr Chow's")
+        restaurant.reviews.create(rating: 4)
+        expect(restaurant.average_rating).to eq 4
       end
     end
   end
 end
-
+end
