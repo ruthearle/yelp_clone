@@ -12,5 +12,13 @@ describe Restaurant, type: :model do
     restaurant = Restaurant.new(name: 'KFC')
     expect{ restaurant.valid? }.to change{ restaurant.errors[:name] }.to include('has already been taken')
   end
+
+  describe '#average rating'do
+    context 'no reviews'do
+      it 'returns N/A' do
+        expect(restaurant.average.rating).to ea 'N/A'
+      end
+    end
+  end
 end
 
