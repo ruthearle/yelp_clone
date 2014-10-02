@@ -17,7 +17,7 @@ describe 'reviewing' do
   it 'a person can leave a review using a form that appears next to a restaurant' do
     leaving_review('Side-breast is the bomb', 3)
     expect(current_path).to eq restaurants_path
-    expect(page).to have_content 'Side-breast is the bomb'
+    expect(page).to have_content 'Side-breast is the bomb (3)'
   end
 
   it 'shows that average rating of reviews that have been left' do
