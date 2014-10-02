@@ -12,4 +12,9 @@ describe Review, type: :model do
     expect{ review.valid? }.to change{ review.errors[:rating] }.to include('is not included in the list')
     expect(review).not_to be_valid
   end
+
+  it 'is valid with a rating between 1..5' do
+    review = Review.new(rating: 4)
+    expect(review).to be_valid
+  end
 end
