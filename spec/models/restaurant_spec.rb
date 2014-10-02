@@ -13,3 +13,4 @@ describe Restaurant, type: :model do
     expect{ restaurant.valid? }.to change{ restaurant.errors[:name] }.to include('has already been taken')
   end
 end
+
