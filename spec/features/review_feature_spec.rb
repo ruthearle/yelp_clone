@@ -28,8 +28,10 @@ describe 'reviewing' do
   end
 
   it 'shows the time stamp of the review' do
+    Timecop.freeze(Time.now)
     leaving_review('So so', 3)
     expect(current_path).to eq restaurants_path
-    expect(page).to have_content 'posted 1 hour ago'
+    Timecop.travel(Time.now + 1)
+    expect(page).to have_content 'posted less than a minute ago'
   end
 end
